@@ -77,36 +77,34 @@ public class TextAnalyzerClientController implements Initializable {
 
         while (true) {
             try {
-                Socket socket;
+                Socket socket = new Socket(host.getHostName(), 9876);
 
-                ObjectOutputStream outputStream;
-                ObjectInputStream inputStream;
+                ObjectOutputStream clientOut;
+                ObjectInputStream clientIn;
 
-                socket = new Socket(host.getHostName(), 9876);
-
-                outputStream = new ObjectOutputStream(socket.getOutputStream());
+                clientOut = new ObjectOutputStream(socket.getOutputStream());
 
                 if (!validateUrl(targetUrl)) {
-                    outputStream.writeObject("bad_url");
+                    clientOut.writeObject("bad_url");
                 } else {
                     System.out.println("\n------------------------------");
                     System.out.println("User input URL: " + targetUrl);
                     System.out.println("\n==> URL sent to TextAnalyzer server for parsing.");
-                    outputStream.writeObject(urlTextField.getText());
+                    clientOut.writeObject(urlTextField.getText());
                 }
 
-                inputStream = new ObjectInputStream(socket.getInputStream());
+                clientIn = new ObjectInputStream(socket.getInputStream());
 
                 System.out.println("\n<== Response received.");
 
-                int uniqueWords = (int) inputStream.readObject();
-                int totalWords = (int) inputStream.readObject();
+                int uniqueWords = (int) clientIn.readObject();
+                int totalWords = (int) clientIn.readObject();
 
                 ObservableList<Word> wordsList = FXCollections.observableArrayList();
 
                 for (int i = 1; i <= uniqueWords; ++i) {
-                    String wordContent = (String) inputStream.readObject();
-                    int wordFrequency = (int) inputStream.readObject();
+                    String wordContent = (String) clientIn.readObject();
+                    int wordFrequency = (int) clientIn.readObject();
 
                     wordsList.add(new Word(i, wordContent, wordFrequency));
 
@@ -117,8 +115,10 @@ public class TextAnalyzerClientController implements Initializable {
 
                 System.out.println("\nUnique words: " + uniqueWords + "  Total words: " + totalWords);
 
-                inputStream.close();
-                outputStream.close();
+                clientIn.close();
+                clientOut.close();
+
+                socket.close();
             } catch (IOException e) {
                 System.out.println(e.toString());
             }

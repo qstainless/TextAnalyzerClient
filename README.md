@@ -23,7 +23,9 @@ After the results are displayed, the user may enter the URL of another file for 
 To install the program, simply clone the repo, open it in your favorite IDE, and run it. Make sure that Java JDK 8 and JavaFX 8 are installed in your system. 
 
 ## Known Issues
-Client submits URL to process in a loop, without requiring the user to click the 'Analyze!' button. Also, once the client receives the word/frequency pairs from the server, it does not populate the TableView. 
+~~Client submits URL to process in a loop, without requiring the user to click the 'Analyze!' button.~~ ~~Also,~~ Once the client receives the word/frequency pairs from the server, it does not display the total counts in the messageLabel ~~populate the TableView~~.
+
+Working on client and server side error handling of invalid URLs and "exit" request.
 
 ## Todo
 Fix known issues.

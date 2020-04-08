@@ -65,21 +65,14 @@ public class TextAnalyzerClientController implements Initializable {
 
     /**
      * Action to perform when the <code>Analyze!</code> button is clicked
-     */
-    @FXML
-    public void handleAnalyzeButtonAction() throws IOException, ClassNotFoundException, InterruptedException {
-        connectToServer(urlTextField.getText());
-    }
-
-    /**
-     * Connects to the server to send the URL to parse. Then received the URL
-     * statistics to display in the GUI.
      *
-     * @param targetUrl The target URL entered by the user
      * @throws IOException            If an IOException occurs
      * @throws ClassNotFoundException If a ClassNotFoundException occurs
      */
-    public void connectToServer(String targetUrl) throws IOException, ClassNotFoundException {
+    @FXML
+    public void handleAnalyzeButtonAction() throws IOException, ClassNotFoundException {
+        String targetUrl = urlTextField.getText();
+
         InetAddress host = InetAddress.getLocalHost();
 
         while (true) {

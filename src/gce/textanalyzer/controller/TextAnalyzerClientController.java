@@ -19,13 +19,12 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.text.NumberFormat;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /**
  * This is the main controller for the GUI of the TextAnalyzer application.
  */
-public class TextAnalyzerUIController implements Initializable {
+public class TextAnalyzerClientController implements Initializable {
     @FXML
     private Label messageLabel;
 

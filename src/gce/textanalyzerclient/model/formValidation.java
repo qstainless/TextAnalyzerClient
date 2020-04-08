@@ -1,4 +1,4 @@
-package gce.textanalyzer.model;
+package gce.textanalyzerclient.model;
 
 import javafx.scene.control.Label;
 

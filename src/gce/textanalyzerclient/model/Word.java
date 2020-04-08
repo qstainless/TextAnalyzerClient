@@ -1,4 +1,4 @@
-package gce.textanalyzer.model;
+package gce.textanalyzerclient.model;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

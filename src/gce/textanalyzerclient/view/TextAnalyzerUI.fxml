@@ -12,7 +12,7 @@ unnecessarily redundant (default) properties
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 <AnchorPane prefHeight="775.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gce.textanalyzer.controller.TextAnalyzerClientController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gce.textanalyzerclient.controller.TextAnalyzerClientController">
     <TableView fx:id="wordTableView" layoutY="231.0" prefHeight="544.0" prefWidth="400.0"
                AnchorPane.topAnchor="231.0">
         <columns>

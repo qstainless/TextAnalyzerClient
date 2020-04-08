@@ -117,10 +117,9 @@ public class TextAnalyzerClientController implements Initializable {
 
                 clientIn.close();
                 clientOut.close();
-
                 socket.close();
             } catch (IOException e) {
-                System.out.println(e.toString());
+                e.printStackTrace();
             }
         }
     }

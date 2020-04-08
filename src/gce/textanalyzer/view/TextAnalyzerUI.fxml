@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Main view of the TextAnalyzer GUI
+Created using SceneBuilder
+
+The generated .fxml file was edited to remove unused or
+unnecessarily redundant (default) properties
+-->
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.*?>
+<AnchorPane prefHeight="775.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="gce.textanalyzer.controller.TextAnalyzerUIController">
+    <TableView fx:id="wordTableView" layoutY="231.0" prefHeight="544.0" prefWidth="400.0"
+               AnchorPane.topAnchor="231.0">
+        <columns>
+            <TableColumn fx:id="wordRank" prefWidth="60.0" resizable="false" text="Rank"/>
+            <TableColumn fx:id="wordContent" prefWidth="233.0" resizable="false" text="Word"/>
+            <TableColumn fx:id="wordFrequency" prefWidth="86.0" resizable="false" text="Frequency"/>
+        </columns>
+    </TableView>
+    <Label layoutX="9.0" layoutY="117.0" prefHeight="27.0" prefWidth="115.0" text="URL to parse:">
+        <font>
+            <Font name="Lucida Sans Regular" size="13.0"/>
+        </font>
+    </Label>
+    <TextField fx:id="urlTextField" layoutX="103.0" layoutY="117.0" prefHeight="27.0" prefWidth="290.0"
+               text="http://shakespeare.mit.edu/macbeth/full.html">
+        <font>
+            <Font name="Lucida Sans Regular" size="13.0"/>
+        </font>
+    </TextField>
+    <Button layoutX="9.0" layoutY="155.0" mnemonicParsing="false"
+            onAction="#handleAnalyzeButtonAction" text="Analyze!">
+        <font>
+            <Font name="Lucida Sans Regular" size="13.0"/>
+        </font>
+    </Button>
+    <TextArea layoutY="28.0" prefHeight="82.0" prefWidth="400.0"
+              text="The program reads the text contents of a URL to display its word count and frequency, excluding HTML tags. Use the input field below to provide a URL to parse and then click the Analyze button."
+              wrapText="true">
+        <font>
+            <Font name="Lucida Sans Regular" size="13.0"/>
+        </font>
+    </TextArea>
+    <Label fx:id="messageLabel" alignment="TOP_LEFT" layoutX="103.0" layoutY="155.0" prefHeight="60.0"
+           prefWidth="270.0" wrapText="true">
+        <font>
+            <Font name="Lucida Sans Regular" size="13.0"/>
+        </font>
+    </Label>
+    <MenuBar prefHeight="29.0" prefWidth="400.0">
+        <Menu mnemonicParsing="false" text="Text Analyzer"/>
+    </MenuBar>
+</AnchorPane>

@@ -73,6 +73,10 @@ public class TextAnalyzerClientController implements Initializable {
     public void handleAnalyzeButtonAction() throws IOException, ClassNotFoundException {
         String targetUrl = urlTextField.getText();
 
+        if (targetUrl.equals("exit")) {
+            System.exit(2);
+        }
+
         InetAddress host = InetAddress.getLocalHost();
 
         while (true) {
@@ -85,17 +89,17 @@ public class TextAnalyzerClientController implements Initializable {
                 clientOut = new ObjectOutputStream(socket.getOutputStream());
 
                 if (!validateUrl(targetUrl)) {
-                    clientOut.writeObject("bad_url");
-                } else {
-                    System.out.println("\n------------------------------");
-                    System.out.println("User input URL: " + targetUrl);
-                    System.out.println("\n==> URL sent to TextAnalyzer server for parsing.");
-                    clientOut.writeObject(urlTextField.getText());
+                    break;
                 }
+
+                System.out.println("\n------------------------------");
+                System.out.println("User input URL: " + targetUrl);
+                System.out.println("\n==> URL sent to TextAnalyzer server for parsing.");
+                clientOut.writeObject(urlTextField.getText());
 
                 clientIn = new ObjectInputStream(socket.getInputStream());
 
-                System.out.println("\n<== Response received.");
+                System.out.println("\n<== Response received. Displaying results.");
 
                 int uniqueWords = (int) clientIn.readObject();
                 int totalWords = (int) clientIn.readObject();
@@ -108,19 +112,30 @@ public class TextAnalyzerClientController implements Initializable {
 
                     wordsList.add(new Word(i, wordContent, wordFrequency));
 
-                    System.out.println(i + ". " + wordContent + " (" + wordFrequency + ")");
+                    // System.out.println(i + ". " + wordContent + " (" + wordFrequency + ")");
                 }
+
+                String done = (String) clientIn.readObject();
 
                 displaySortedWords(uniqueWords, totalWords, wordsList);
 
-                System.out.println("\nUnique words: " + uniqueWords + "  Total words: " + totalWords);
+                // System.out.println("\nUnique words: " + uniqueWords + "  Total words: " + totalWords);
 
                 clientIn.close();
                 clientOut.close();
                 socket.close();
+
+                if (done.equals(".:done:.")) {
+                    System.out.println("\nTextAnalyzer Client ready. Waiting for user input.");
+                    break;
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        if (!validateUrl(targetUrl)) {
+            messageLabel.setText("An error occured. An invalid URL, perhaps? See console for additional details");
         }
     }
 
@@ -139,6 +154,7 @@ public class TextAnalyzerClientController implements Initializable {
 
         NumberFormat wordCountFormat = NumberFormat.getInstance();
 
+        // TODO: Not working
         messageLabel.setText("After parsing, " + wordCountFormat.format(uniqueWords)
                 + " unique words were found, out of a total of "
                 + wordCountFormat.format(totalWords) + " words.");

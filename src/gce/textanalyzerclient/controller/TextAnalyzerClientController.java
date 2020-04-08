@@ -44,9 +44,9 @@ public class TextAnalyzerClientController implements Initializable {
     private TableColumn<Word, Integer> wordFrequency;
 
     /**
-     * Called by the {@code FXMLLoader} to initialize the controller after its root
-     * element has been completely processed. Defines the properties of the
-     * column names in the {@link TableView} where the programs results
+     * Called by the {@code FXMLLoader} to initialize the controller after its
+     * root element has been completely processed. Defines the properties of
+     * the column names in the {@link TableView} where the program's results
      * will be displayed.
      *
      * @param location  The location used to resolve relative paths for the
@@ -64,14 +64,22 @@ public class TextAnalyzerClientController implements Initializable {
     }
 
     /**
-     * Action to perform when the Analyze! button is clicked
+     * Action to perform when the <code>Analyze!</code> button is clicked
      */
     @FXML
     public void handleAnalyzeButtonAction() throws IOException, ClassNotFoundException, InterruptedException {
         connectToServer(urlTextField.getText());
     }
 
-    public void connectToServer(String targetUrl) throws IOException, ClassNotFoundException, InterruptedException {
+    /**
+     * Connects to the server to send the URL to parse. Then received the URL
+     * statistics to display in the GUI.
+     *
+     * @param targetUrl The target URL entered by the user
+     * @throws IOException            If an IOException occurs
+     * @throws ClassNotFoundException If a ClassNotFoundException occurs
+     */
+    public void connectToServer(String targetUrl) throws IOException, ClassNotFoundException {
         InetAddress host = InetAddress.getLocalHost();
 
         while (true) {
@@ -124,6 +132,15 @@ public class TextAnalyzerClientController implements Initializable {
         }
     }
 
+    /**
+     * Populate the {@code TableView} with the words sorted by frequency in
+     * descending order. Displays the total number of words and number of
+     * unique words found in the source URL.
+     *
+     * @param uniqueWords    The number of unique words sent by the server
+     * @param totalWords     The total number of words sent by the server
+     * @param wordsToDisplay The word/frequency pairs to display
+     */
     public void displaySortedWords(int uniqueWords, int totalWords, ObservableList<Word> wordsToDisplay) {
         wordTableView.getItems().clear();
         wordTableView.setEditable(false);

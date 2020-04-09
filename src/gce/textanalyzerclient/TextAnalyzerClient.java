@@ -22,7 +22,7 @@ import javafx.stage.Stage;
 public class TextAnalyzerClient extends Application {
 
     /**
-     * Entry point of the {@code TextAnalyzer} application.
+     * Entry point of the {@code TextAnalyzer} Client application.
      *
      * @param args the input arguments
      */

@@ -152,6 +152,7 @@ public class TextAnalyzerClientController implements Initializable {
      * @return True if the URL field is not empty
      */
     public boolean validateUrl(String url) {
+        wordTableView.getItems().clear();
         return formValidation.textFieldNotEmpty(url, messageLabel, "The URL must be valid and cannot be empty.");
     }
 

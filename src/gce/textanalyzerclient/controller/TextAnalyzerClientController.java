@@ -19,6 +19,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.URL;
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 
 /**
@@ -94,7 +95,10 @@ public class TextAnalyzerClientController implements Initializable {
 
                 clientIn = new ObjectInputStream(socket.getInputStream());
 
-                System.out.println("\n<== Response received. Displaying results.");
+                String dateTime = TextAnalyzerClientController.getDateTime();
+
+                System.out.println("\n<== Data received at " + dateTime + ".");
+                System.out.println("Displaying results.");
 
                 int uniqueWords = (int) clientIn.readObject();
                 int totalWords = (int) clientIn.readObject();
@@ -155,4 +159,9 @@ public class TextAnalyzerClientController implements Initializable {
         return formValidation.textFieldNotEmpty(url, messageLabel, "The URL must be valid and cannot be empty.");
     }
 
+
+    public static String getDateTime() {
+        LocalDateTime dateTime = LocalDateTime.now();
+        return dateTime.toString();
+    }
 }

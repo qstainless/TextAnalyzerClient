@@ -8,7 +8,7 @@ This is the client application of my TextAnalyzer program. It uses a GUI (Graphi
 The client presents a GUI to the user, asking for a URL to parse: count the total number of words, excluding HTML tags, the total number of unique words, and the frequency of those unique words. The client sends the URL to the server application, which will parse the URL and send back the statistics to this client application. Once the data is received, the client will display the statistics and the word/frequency pairs in the GUI, ordered by word frequency in descending order. 
 
 ## Code design
-For this exercise, the [TextAnalyzer](https://github.com/qstainless/TextAnalyzer) program was split into two parts: a client application and a server application. The client application presents the user with the GUI, interacts with the server application to process the URL submitted by the user, and then displays the data processed and sent back by the server.
+For this exercise, the [TextAnalyzer](https://github.com/qstainless/TextAnalyzer) program was split into two parts: this client application and a server application. The client application presents the user with the GUI, interacts with the server application to process the URL submitted by the user, and then displays the data processed and sent back by the server.
 
 For additional code design notes, see the TextAnalyzer [Code Desing](https://github.com/qstainless/TextAnalyzer#code-design) section.
 
@@ -30,7 +30,7 @@ After the results are displayed, the user may enter the URL of another file for 
 Although the user may close the client application at any time, doing so will not terminate the server. To terminate both the client and the server, the user must enter "exit" (sans quotes) in the URL field and click the 'Analyze!' button.
 
 ## Installation.
-To install the program, simply clone the repo, open it in your favorite IDE, and run it. Make sure that Java JDK 8 and JavaFX 8 are installed in your system. 
+To install the program, simply clone the repo, open it in your favorite IDE, and run it. Make sure that Java JDK 8 and JavaFX 8 are installed in your system. For convenience, I have created the files needed for importing the project into Eclipse.
 
 ## Known Issues
 None at this time.

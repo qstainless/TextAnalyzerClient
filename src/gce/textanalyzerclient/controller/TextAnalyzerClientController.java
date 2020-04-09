@@ -73,13 +73,8 @@ public class TextAnalyzerClientController implements Initializable {
     public void handleAnalyzeButtonAction() throws IOException, ClassNotFoundException {
         String targetUrl = urlTextField.getText();
 
-        if (targetUrl.equals("exit")) {
-            System.exit(2);
-        }
-
         InetAddress host = InetAddress.getLocalHost();
 
-        while (true) {
             try {
                 Socket socket = new Socket(host.getHostName(), 9876);
 
@@ -88,55 +83,47 @@ public class TextAnalyzerClientController implements Initializable {
 
                 clientOut = new ObjectOutputStream(socket.getOutputStream());
 
-                if (!validateUrl(targetUrl)) {
-                    break;
+                if (targetUrl.equals("exit")) {
+                    System.out.println("\n==> User requested program termination. Exiting.");
+                    clientOut.writeObject("exit");
+                    clientOut.close();
+                    socket.close();
+                    System.exit(2);
                 }
 
-                System.out.println("\n------------------------------");
-                System.out.println("User input URL: " + targetUrl);
-                System.out.println("\n==> URL sent to TextAnalyzer server for parsing.");
-                clientOut.writeObject(urlTextField.getText());
+                if (validateUrl(targetUrl)) {
+                    System.out.println("\n------------------------------");
+                    System.out.println("User input URL: " + targetUrl);
+                    System.out.println("\n==> URL sent to TextAnalyzer server for parsing.");
+                    clientOut.writeObject(urlTextField.getText());
 
-                clientIn = new ObjectInputStream(socket.getInputStream());
+                    clientIn = new ObjectInputStream(socket.getInputStream());
 
-                System.out.println("\n<== Response received. Displaying results.");
+                    System.out.println("\n<== Response received. Displaying results.");
 
-                int uniqueWords = (int) clientIn.readObject();
-                int totalWords = (int) clientIn.readObject();
+                    int uniqueWords = (int) clientIn.readObject();
+                    int totalWords = (int) clientIn.readObject();
 
-                ObservableList<Word> wordsList = FXCollections.observableArrayList();
+                    ObservableList<Word> wordsList = FXCollections.observableArrayList();
 
-                for (int i = 1; i <= uniqueWords; ++i) {
-                    String wordContent = (String) clientIn.readObject();
-                    int wordFrequency = (int) clientIn.readObject();
+                    for (int i = 1; i <= uniqueWords; ++i) {
+                        String wordContent = (String) clientIn.readObject();
+                        int wordFrequency = (int) clientIn.readObject();
 
-                    wordsList.add(new Word(i, wordContent, wordFrequency));
+                        wordsList.add(new Word(i, wordContent, wordFrequency));
+                    }
 
-                    // System.out.println(i + ". " + wordContent + " (" + wordFrequency + ")");
-                }
+                    displaySortedWords(uniqueWords, totalWords, wordsList);
 
-                String done = (String) clientIn.readObject();
+                    clientIn.close();
+                    clientOut.close();
+                    socket.close();
 
-                displaySortedWords(uniqueWords, totalWords, wordsList);
-
-                // System.out.println("\nUnique words: " + uniqueWords + "  Total words: " + totalWords);
-
-                clientIn.close();
-                clientOut.close();
-                socket.close();
-
-                if (done.equals(".:done:.")) {
                     System.out.println("\nTextAnalyzer Client ready. Waiting for user input.");
-                    break;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-
-        if (!validateUrl(targetUrl)) {
-            messageLabel.setText("An error occured. An invalid URL, perhaps? See console for additional details");
-        }
     }
 
     /**
@@ -170,7 +157,7 @@ public class TextAnalyzerClientController implements Initializable {
      * @return True if the URL field is not empty
      */
     public boolean validateUrl(String url) {
-        return formValidation.textFieldNotEmpty(url, messageLabel, "The URL cannot be empty.");
+        return formValidation.textFieldNotEmpty(url, messageLabel, "The URL must be valid and cannot be empty.");
     }
 
 }

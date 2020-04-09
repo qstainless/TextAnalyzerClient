@@ -56,6 +56,10 @@ public class formValidation {
      * @return True if the URL is valir
      */
     public static boolean isValidURL(String targetUrl) {
+        if (targetUrl.equals("exit")) {
+            return true;
+        }
+
         try {
             URL url = new URL(targetUrl);
             url.toURI();

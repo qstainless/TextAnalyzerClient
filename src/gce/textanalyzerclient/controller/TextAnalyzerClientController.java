@@ -136,7 +136,6 @@ public class TextAnalyzerClientController implements Initializable {
 
         NumberFormat wordCountFormat = NumberFormat.getInstance();
 
-        // TODO: Not working
         messageLabel.setText("After parsing, " + wordCountFormat.format(uniqueWords)
                 + " unique words were found, out of a total of "
                 + wordCountFormat.format(totalWords) + " words.");

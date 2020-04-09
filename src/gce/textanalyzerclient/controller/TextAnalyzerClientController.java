@@ -65,17 +65,14 @@ public class TextAnalyzerClientController implements Initializable {
 
     /**
      * Action to perform when the <code>Analyze!</code> button is clicked
-     *
-     * @throws IOException            If an IOException occurs
-     * @throws ClassNotFoundException If a ClassNotFoundException occurs
      */
     @FXML
-    public void handleAnalyzeButtonAction() throws IOException, ClassNotFoundException {
+    public void handleAnalyzeButtonAction() {
         String targetUrl = urlTextField.getText();
 
-        InetAddress host = InetAddress.getLocalHost();
-
+        if (validateUrl(targetUrl)) {
             try {
+                InetAddress host = InetAddress.getLocalHost();
                 Socket socket = new Socket(host.getHostName(), 9876);
 
                 ObjectOutputStream clientOut;
@@ -91,39 +88,37 @@ public class TextAnalyzerClientController implements Initializable {
                     System.exit(2);
                 }
 
-                if (validateUrl(targetUrl)) {
-                    System.out.println("\n------------------------------");
-                    System.out.println("User input URL: " + targetUrl);
-                    System.out.println("\n==> URL sent to TextAnalyzer server for parsing.");
-                    clientOut.writeObject(urlTextField.getText());
+                System.out.println("\nUser input URL: " + targetUrl);
+                System.out.println("\n==> URL sent to TextAnalyzer server for parsing.");
+                clientOut.writeObject(urlTextField.getText());
 
-                    clientIn = new ObjectInputStream(socket.getInputStream());
+                clientIn = new ObjectInputStream(socket.getInputStream());
 
-                    System.out.println("\n<== Response received. Displaying results.");
+                System.out.println("\n<== Response received. Displaying results.");
 
-                    int uniqueWords = (int) clientIn.readObject();
-                    int totalWords = (int) clientIn.readObject();
+                int uniqueWords = (int) clientIn.readObject();
+                int totalWords = (int) clientIn.readObject();
 
-                    ObservableList<Word> wordsList = FXCollections.observableArrayList();
+                ObservableList<Word> wordsList = FXCollections.observableArrayList();
 
-                    for (int i = 1; i <= uniqueWords; ++i) {
-                        String wordContent = (String) clientIn.readObject();
-                        int wordFrequency = (int) clientIn.readObject();
+                for (int i = 1; i <= uniqueWords; ++i) {
+                    String wordContent = (String) clientIn.readObject();
+                    int wordFrequency = (int) clientIn.readObject();
 
-                        wordsList.add(new Word(i, wordContent, wordFrequency));
-                    }
-
-                    displaySortedWords(uniqueWords, totalWords, wordsList);
-
-                    clientIn.close();
-                    clientOut.close();
-                    socket.close();
-
-                    System.out.println("\nTextAnalyzer Client ready. Waiting for user input.");
+                    wordsList.add(new Word(i, wordContent, wordFrequency));
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+
+                displaySortedWords(uniqueWords, totalWords, wordsList);
+
+                clientIn.close();
+                clientOut.close();
+                socket.close();
+
+                System.out.println("\nTextAnalyzer Client ready. Waiting for user input.");
+            } catch (IOException | ClassNotFoundException e) {
+                System.out.println(e.toString());
             }
+        }
     }
 
     /**

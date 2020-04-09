@@ -2,7 +2,7 @@
 Go to [TextAnalyzer Server](https://github.com/qstainless/TextAnalyzerServer).
 
 ## Overview
-This is the client application of my TextAnalyzer program. It uses a GUI (Graphical User Interface) that prompts the user to specify a URL (Uniform Resource Locator or website address) from which a file will be read and displays statistics about the words in that file, excluding HTML (HyperText Markup Language) tags.
+This is the client application of my [TextAnalyzer](https://github.com/qstainless/TextAnalyzer) program. It uses a GUI (Graphical User Interface) that prompts the user to specify a URL (Uniform Resource Locator or website address) from which a file will be read and displays statistics about the words in that file, excluding HTML (HyperText Markup Language) tags.
 
 ## What does this program do?
 The client presents a GUI to the user, asking for a URL to parse: count the total number of words, excluding HTML tags, the total number of unique words, and the frequency of those unique words. The client sends the URL to the server application, which will parse the URL and send back the statistics to this client application. Once the data is received, the client will display the statistics and the word/frequency pairs in the GUI, ordered by word frequency in descending order. 

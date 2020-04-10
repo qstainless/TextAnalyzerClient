@@ -1,6 +1,6 @@
 package gce.textanalyzerclient.tests;
 
-import gce.textanalyzerclient.model.formValidation;
+import gce.textanalyzerclient.controller.TextAnalyzerClientController;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -19,7 +19,7 @@ class formValidationTest {
     @Order(1)
     @DisplayName("The URL field is empty.")
     void testEmptyUrl() {
-        boolean actualResult = formValidation.textFieldNotEmpty(nullUrl);
+        boolean actualResult = TextAnalyzerClientController.textFieldNotEmpty(nullUrl);
         assertFalse(actualResult);
     }
 
@@ -30,7 +30,7 @@ class formValidationTest {
     @Order(2)
     @DisplayName("The URL field is not empty.")
     void testNotEmptyUrl() {
-        boolean actualResult = formValidation.textFieldNotEmpty(notEmptyUrl);
+        boolean actualResult = TextAnalyzerClientController.textFieldNotEmpty(notEmptyUrl);
         assertTrue(actualResult);
     }
 
@@ -41,7 +41,7 @@ class formValidationTest {
     @Order(3)
     @DisplayName("The URL provided is malformed.")
     void testMalformedUrl() {
-        boolean actualResult = formValidation.textFieldNotEmpty(malformedUrl);
+        boolean actualResult = TextAnalyzerClientController.textFieldNotEmpty(malformedUrl);
         assertFalse(actualResult);
     }
 }

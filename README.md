@@ -56,6 +56,8 @@ Version 1.2 - First version
 ![Displaying Results](TextAnalyzer-Screenshot-Server-Client-Results.png)
 ### Program termination
 ![Program Termination](TextAnalyzer-Screenshot-Server-Client-Program-Exit.png)
+### Running from the command line
+![Command Line](TextAnalyzer-Screenshot-Command-Line.png)
 
 ## Unit Tests
 ![Client Unit Tests](TextAnalyzer-Screenshot-Client-Unit-Tests.png)

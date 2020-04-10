@@ -126,6 +126,14 @@ public class TextAnalyzerClientController implements Initializable {
     }
 
     /**
+     * Action to perform when the Quit menu item or Quit button is clicked
+     */
+    @FXML
+    public void handleQuitButtonAction() {
+        System.exit(0);
+    }
+
+    /**
      * Populate the {@code TableView} with the words sorted by frequency in
      * descending order. Displays the total number of words and number of
      * unique words found in the source URL.

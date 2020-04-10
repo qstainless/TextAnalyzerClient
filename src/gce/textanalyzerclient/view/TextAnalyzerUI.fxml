@@ -3,18 +3,16 @@
 <!--
 Main view of the TextAnalyzer GUI
 Created using SceneBuilder
-
-The generated .fxml file was edited to remove unused or
-unnecessarily redundant (default) properties
 -->
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.*?>
 <AnchorPane prefHeight="775.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="gce.textanalyzerclient.controller.TextAnalyzerClientController">
-    <TableView fx:id="wordTableView" layoutY="231.0" prefHeight="544.0" prefWidth="400.0"
-               AnchorPane.topAnchor="231.0">
+    <TableView fx:id="wordTableView" layoutY="231.0" prefHeight="544.0" prefWidth="400.0" AnchorPane.topAnchor="231.0">
         <columns>
             <TableColumn fx:id="wordRank" prefWidth="60.0" resizable="false" text="Rank"/>
             <TableColumn fx:id="wordContent" prefWidth="233.0" resizable="false" text="Word"/>
@@ -26,32 +24,48 @@ unnecessarily redundant (default) properties
             <Font name="Lucida Sans Regular" size="13.0"/>
         </font>
     </Label>
-    <TextField fx:id="urlTextField" layoutX="103.0" layoutY="117.0" prefHeight="27.0" prefWidth="290.0"
-               text="http://shakespeare.mit.edu/macbeth/full.html">
+    <Text fill="#111111c9" layoutX="5.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0"
+          text="The program reads the text contents of a URL to display its word count and frequency, excluding HTML tags. Use the input field below to provide a URL to parse and press Enter or click the Analyze button."
+          textAlignment="JUSTIFY" wrappingWidth="387.7802734375">
+        <font>
+            <Font name="Arial" size="14.0"/>
+        </font>
+    </Text>
+    <TextField fx:id="urlTextField" layoutX="103.0" layoutY="117.0" onAction="#handleAnalyzeButtonAction"
+               prefHeight="27.0" prefWidth="290.0" text="http://shakespeare.mit.edu/macbeth/full.html">
         <font>
             <Font name="Lucida Sans Regular" size="13.0"/>
         </font>
+        <cursor>
+            <Cursor fx:constant="TEXT"/>
+        </cursor>
     </TextField>
-    <Button layoutX="9.0" layoutY="155.0" mnemonicParsing="false"
-            onAction="#handleAnalyzeButtonAction" text="Analyze!">
+    <Button layoutX="9.0" layoutY="155.0" mnemonicParsing="false" onAction="#handleAnalyzeButtonAction" text="Analyze!">
         <font>
             <Font name="Lucida Sans Regular" size="13.0"/>
         </font>
     </Button>
-    <TextArea layoutY="28.0" prefHeight="82.0" prefWidth="400.0"
-              text="The program reads the text contents of a URL to display its word count and frequency, excluding HTML tags. Use the input field below to provide a URL to parse and then click the Analyze button."
-              wrapText="true">
+    <Button layoutX="9.0" layoutY="190.0" mnemonicParsing="false" onAction="#handleQuitButtonAction" prefHeight="27.0"
+            prefWidth="65.0" text="Quit">
         <font>
             <Font name="Lucida Sans Regular" size="13.0"/>
         </font>
-    </TextArea>
-    <Label fx:id="messageLabel" alignment="TOP_LEFT" layoutX="103.0" layoutY="155.0" prefHeight="60.0"
-           prefWidth="270.0" wrapText="true">
+    </Button>
+    <Label fx:id="messageLabel" alignment="TOP_LEFT" layoutX="103.0" layoutY="155.0" prefHeight="60.0" prefWidth="270.0"
+           wrapText="true">
         <font>
             <Font name="Lucida Sans Regular" size="13.0"/>
         </font>
     </Label>
     <MenuBar prefHeight="29.0" prefWidth="400.0">
-        <Menu mnemonicParsing="false" text="Text Analyzer"/>
+        <Menu mnemonicParsing="false" text="Text Analyzer">
+            <items>
+                <MenuItem fx:id="menuExit" mnemonicParsing="false" onAction="#handleQuitButtonAction" text="Quit">
+                    <accelerator>
+                        <KeyCodeCombination alt="DOWN" code="Q" control="UP" meta="UP" shift="UP" shortcut="UP"/>
+                    </accelerator>
+                </MenuItem>
+            </items>
+        </Menu>
     </MenuBar>
 </AnchorPane>

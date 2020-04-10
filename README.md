@@ -10,7 +10,7 @@ The client presents a GUI to the user, asking for a URL to parse: count the tota
 ## Code design
 For this exercise, the [TextAnalyzer](https://github.com/qstainless/TextAnalyzer) program was split into two parts: this client application and a server application. The client application presents the user with the GUI, interacts with the server application to process the URL submitted by the user, and then displays the data processed and sent back by the server.
 
-For additional code design notes, see the TextAnalyzer [Code Desing](https://github.com/qstainless/TextAnalyzer#code-design) section.
+For additional code design notes, see the TextAnalyzer [Code Design](https://github.com/qstainless/TextAnalyzer#code-design) section.
 
 ## Test plans and standards
 The client and server applications were built upon the existing TextAnalyzer code base. The program was not developed initially using TDD (Test Driven Development) standards. In other words, the code and expected output were not tested formally. Testing was done incrementally, that is, after each completed minor change, typically after each line of code was added, mainly to catch compile-time and runtime errors not previously detected and highlighted by the IDE.

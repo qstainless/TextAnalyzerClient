@@ -129,7 +129,8 @@ public class TextAnalyzerClientController implements Initializable {
      */
     @FXML
     public void handleQuitButtonAction() {
-        System.exit(0);
+        urlTextField.setText("exit");
+        handleAnalyzeButtonAction();
     }
 
     /**

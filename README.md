@@ -35,7 +35,7 @@ To install the program, simply clone the repo, open it in your favorite IDE, and
 ## Known Issues
 The server/client run from an IDE in macOS, Windows 10 Pro and Linux (Ubuntu 18.04). The client .jar file, however, only runs properly in macOS and Windows 10 Pro. Searching for a solution, Linux would require that Openjfx be installed alongside the JDK (in my case, Amazon Corretto 8). Unfortunately, installing Openjfx was not enough. I may revisit this in the future. 
 
-Execution time was drastically different between macOS (~12s) and Windows 10 Pro (~73). Because I don't typically develop in a Windows environment, I can't explain the difference. The [screenshot](#running-from-the-command-line-(win10)) shows the server and client timestamps and shows the schema and tables properly created. 
+Execution time was drastically different between macOS (~12s) and Windows 10 Pro (~73). Because I don't typically develop in a Windows environment, I can't explain the difference. The [screenshot](#running-from-the-command-line-win10) shows the server and client timestamps and shows the schema and tables properly created. 
 
 ## Todo
 Find a way to run the client .jar file in Linux.

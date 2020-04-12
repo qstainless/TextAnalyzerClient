@@ -85,7 +85,7 @@ public class TextAnalyzerClientController implements Initializable {
                     clientOut.writeObject("exit");
                     clientOut.close();
                     socket.close();
-                    System.exit(2);
+                    System.exit(0);
                 }
 
                 System.out.println("\nUser input URL: " + targetUrl);

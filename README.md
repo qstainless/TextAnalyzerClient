@@ -30,7 +30,11 @@ After the results are displayed, the user may enter the URL of another file for 
 Although the user may close the client application at any time, doing so will not terminate the server. To terminate both the client and the server, the user must enter "exit" (sans quotes) in the URL field and click the 'Analyze!' button.
 
 ## Installation.
-To install the program, simply clone the repo, open it in your favorite IDE, and run it. Make sure that Java JDK 8 and JavaFX 8 are installed in your system. For convenience, I have created the files needed for importing the project into Eclipse.
+Option 1. Clone the repo, open it in your favorite IDE, and run it. Make sure that Java JDK 8, JavaFX 8, and Junit 5 are installed in your system.
+
+Option 2. Download and run [TextAnalyzerClient.jar](https://github.com/qstainless/TextAnalyzerClient/tree/master/out/artifacts/TextAnalyzerClient). 
+
+IMPORTANT: You must run [TextAnalyzerServer](https://github.com/qstainless/TextAnalyzerServer) BEFORE you run this client.
 
 ## Known Issues
 The server/client run from an IDE in macOS, Windows 10 Pro and Linux (Ubuntu 18.04). The client .jar file, however, only runs properly in macOS and Windows 10 Pro. Searching for a solution, Linux would require that Openjfx be installed alongside the JDK (in my case, Amazon Corretto 8). Unfortunately, installing Openjfx was not enough. I may revisit this in the future. 

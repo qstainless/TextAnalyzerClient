@@ -60,15 +60,15 @@ Version 1.2 - First version
 
 ## Screenshots
 ### Program running
-![Client/Server Running](TextAnalyzer-Screenshot-Server-Client-Results-Running.png)
+![Client/Server Running](Screenshots/TextAnalyzer-Screenshot-Server-Client-Results-Running.png)
 ### Displaying results
-![Displaying Results](TextAnalyzer-Screenshot-Server-Client-Results.png)
+![Displaying Results](Screenshots/TextAnalyzer-Screenshot-Server-Client-Results.png)
 ### Program termination
-![Program Termination](TextAnalyzer-Screenshot-Server-Client-Program-Exit.png)
+![Program Termination](Screenshots/TextAnalyzer-Screenshot-Server-Client-Program-Exit.png)
 ### Running from the command line (macOS)
-![Command Line macOS](TextAnalyzer-Screenshot-Command-Line.png)
+![Command Line macOS](Screenshots/TextAnalyzer-Screenshot-Command-Line.png)
 ### Running from the command line (Win10)
-![Command Line win10](TextAnalyzer-Screenshot-Server-Client-Win10.png)
+![Command Line win10](Screenshots/TextAnalyzer-Screenshot-Server-Client-Win10.png)
 
 ## Unit Tests
-![Client Unit Tests](TextAnalyzer-Screenshot-Client-Unit-Tests.png)
+![Client Unit Tests](Screenshots/TextAnalyzer-Screenshot-Client-Unit-Tests.png)

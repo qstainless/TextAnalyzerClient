@@ -96,9 +96,6 @@ public class TextAnalyzerClientController implements Initializable {
 
                 String dateTime = TextAnalyzerClientController.getDateTime();
 
-                System.out.println("\n<== Data received at " + dateTime + ".");
-                System.out.println("Displaying results.");
-
                 int uniqueWords = (int) clientIn.readObject();
                 int totalWords = (int) clientIn.readObject();
 
@@ -111,7 +108,15 @@ public class TextAnalyzerClientController implements Initializable {
                     wordsList.add(new Word(i, wordContent, wordFrequency));
                 }
 
-                displaySortedWords(uniqueWords, totalWords, wordsList);
+                if (totalWords > 0) {
+                    System.out.println("\n<== Data received at " + dateTime + ".");
+                    System.out.println("Displaying results.");
+                    displaySortedWords(uniqueWords, totalWords, wordsList);
+                } else {
+                    System.out.println("\n<== Empty data set received at " + dateTime + ".");
+                    messageLabel.setText("The URL is either invalid or has an empty content. Please try a different " +
+                            "URL.");
+                }
 
                 clientIn.close();
                 clientOut.close();
@@ -119,7 +124,9 @@ public class TextAnalyzerClientController implements Initializable {
 
                 System.out.println("\nTextAnalyzer Client ready. Waiting for user input.");
             } catch (IOException | ClassNotFoundException e) {
-                System.out.println(e.toString());
+                String message = "The URL entered is invalid.";
+                messageLabel.setText(message);
+                System.out.println("\n<== Server error: " + message);
             }
         }
     }

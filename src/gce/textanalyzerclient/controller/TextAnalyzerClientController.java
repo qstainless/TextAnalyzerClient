@@ -183,8 +183,8 @@ public class TextAnalyzerClientController implements Initializable {
      * {@code out} defaults to false if the input parameter is <tt>null</tt>
      * or empty and if it is a valid URL.
      *
-     * @param targetUrl The URL entered by the user in the URL textfield.
-     * @return True if the URL textfield is not empty and is a valid URL
+     * @param targetUrl The URL entered by the user in the URL TextField.
+     * @return True if the URL TextField is not empty and is a valid URL
      * @see TextAnalyzerClientController#textFieldNotEmpty(String, Label, String)
      */
     public static boolean textFieldNotEmpty(String targetUrl) {
@@ -198,10 +198,10 @@ public class TextAnalyzerClientController implements Initializable {
     }
 
     /**
-     * @param targeturl      The value of the URL textfield.
+     * @param targeturl      The value of the URL TextField.
      * @param messageLabel   Placeholder in the GUI for error messages
      * @param validationText Feedback to user on errors.
-     * @return True if the URL textfield is not empty
+     * @return True if the URL TextField is not empty
      */
     public static boolean textFieldNotEmpty(String targeturl, Label messageLabel, String validationText) {
         boolean out = true;
@@ -221,7 +221,7 @@ public class TextAnalyzerClientController implements Initializable {
      * Checks if the targetUrl is a valid URL
      *
      * @param targetUrl The target URL entered by the user
-     * @return True if the URL is valir
+     * @return True if the URL is valid
      */
     public static boolean isValidURL(String targetUrl) {
         if (targetUrl.equals("exit")) {

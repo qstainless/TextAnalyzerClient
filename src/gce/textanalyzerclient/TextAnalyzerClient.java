@@ -39,7 +39,8 @@ public class TextAnalyzerClient extends Application {
             primaryStage.setResizable(false);
             primaryStage.show();
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Unable to load main view.\n\nProgram cannot continue. Exiting.");
+            System.exit(1);
         }
     }
 }

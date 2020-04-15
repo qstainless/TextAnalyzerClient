@@ -30,7 +30,9 @@ After the results are displayed, the user may enter the URL of another file for 
 Although the user may close the client application at any time, doing so will not terminate the server. To terminate both the client and the server, the user must enter "exit" (sans quotes) in the URL field and click the 'Analyze!' button.
 
 ## Installation.
-Option 1. Clone the repo, open it in your favorite IDE, and run it. Make sure that Java JDK 8, JavaFX 8, and Junit 5 are installed in your system.
+Option 1. Clone the repo and import it in your favorite IDE. Make sure that:
+ 1. The project SDK is Java 8 with project language level 8, and
+ 2. JavaFX 8, Junit 5, [Jsoup](https://jsoup.org), and the Oracle [JDBC Driver](https://dev.mysql.com/downloads/connector/j/) for MySQL are installed in your system.
 
 Option 2. Download and run [TextAnalyzerClient.jar](https://github.com/qstainless/TextAnalyzerClient/tree/master/out/artifacts/TextAnalyzerClient). 
 

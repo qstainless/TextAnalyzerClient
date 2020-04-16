@@ -72,14 +72,19 @@ public class TextAnalyzerClientController implements Initializable {
 
         if (validateUrl(targetUrl)) {
             try {
+                // Get the localhost address
                 InetAddress host = InetAddress.getLocalHost();
+
+                // Create the client socket
                 Socket socket = new Socket(host.getHostName(), 9876);
 
                 ObjectOutputStream clientOut;
                 ObjectInputStream clientIn;
 
+                // Create the output stream
                 clientOut = new ObjectOutputStream(socket.getOutputStream());
 
+                // Send the "exit" request to the server when pressing quit
                 if (targetUrl.equals("exit")) {
                     System.out.println("\n==> User requested program termination. Exiting.");
                     clientOut.writeObject("exit");
@@ -88,36 +93,49 @@ public class TextAnalyzerClientController implements Initializable {
                     System.exit(0);
                 }
 
+                // Because a valid URL was submitted, send it to the server
                 System.out.println("\nUser input URL: " + targetUrl);
                 System.out.println("\n==> URL sent to TextAnalyzer server for parsing.");
                 clientOut.writeObject(urlTextField.getText());
 
+                // Create the input stream and wait for the server to respond
                 clientIn = new ObjectInputStream(socket.getInputStream());
 
+                // Get the time and date of the server response
                 String dateTime = TextAnalyzerClientController.getDateTime();
 
+                // After processing the URL, the server first sends two objects
                 int uniqueWords = (int) clientIn.readObject();
                 int totalWords = (int) clientIn.readObject();
 
+                // After sending the unique and total word counts, the server
+                // Sends the words and their frequencies one by one
+
+                // Create the ObservableList that will populate the TableView
                 ObservableList<Word> wordsList = FXCollections.observableArrayList();
 
+                // Read the words and their frequencies sent by the server
                 for (int i = 1; i <= uniqueWords; ++i) {
                     String wordContent = (String) clientIn.readObject();
                     int wordFrequency = (int) clientIn.readObject();
 
+                    // Add the word and its frequency to the ObservableList
                     wordsList.add(new Word(i, wordContent, wordFrequency));
                 }
 
                 if (totalWords > 0) {
+                    // Words received. Display the results in the GUI
                     System.out.println("\n<== Data received at " + dateTime + ".");
                     System.out.println("Displaying results.");
                     displaySortedWords(uniqueWords, totalWords, wordsList);
                 } else {
+                    // The URL sent an empty word content; no words received.
                     System.out.println("\n<== Empty data set received at " + dateTime + ".");
                     messageLabel.setText("The URL is either invalid or has an empty content. Please try a different " +
                             "URL.");
                 }
 
+                // Close the streams and the socket and wait for another URL or exit
                 clientIn.close();
                 clientOut.close();
                 socket.close();

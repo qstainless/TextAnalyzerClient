@@ -76,20 +76,20 @@ public class TextAnalyzerClientController implements Initializable {
                 InetAddress host = InetAddress.getLocalHost();
 
                 // Create the client socket
-                Socket socket = new Socket(host.getHostName(), 9876);
+                Socket clientSocket = new Socket(host.getHostName(), 9876);
 
                 ObjectOutputStream clientOut;
                 ObjectInputStream clientIn;
 
                 // Create the output stream
-                clientOut = new ObjectOutputStream(socket.getOutputStream());
+                clientOut = new ObjectOutputStream(clientSocket.getOutputStream());
 
                 // Send the "exit" request to the server when pressing quit
                 if (targetUrl.equals("exit")) {
                     System.out.println("\n==> User requested program termination. Exiting.");
                     clientOut.writeObject("exit");
                     clientOut.close();
-                    socket.close();
+                    clientSocket.close();
                     System.exit(0);
                 }
 
@@ -99,7 +99,7 @@ public class TextAnalyzerClientController implements Initializable {
                 clientOut.writeObject(urlTextField.getText());
 
                 // Create the input stream and wait for the server to respond
-                clientIn = new ObjectInputStream(socket.getInputStream());
+                clientIn = new ObjectInputStream(clientSocket.getInputStream());
 
                 // Get the time and date of the server response
                 String dateTime = TextAnalyzerClientController.getDateTime();
@@ -138,7 +138,7 @@ public class TextAnalyzerClientController implements Initializable {
                 // Close the streams and the socket and wait for another URL or exit
                 clientIn.close();
                 clientOut.close();
-                socket.close();
+                clientSocket.close();
 
                 System.out.println("\nTextAnalyzer Client ready. Waiting for user input.");
             } catch (IOException | ClassNotFoundException e) {

@@ -7,10 +7,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * This TextAnalyzer program implements an application that reads a file from
- * a given URL and outputs statistics about the words found in that file. It
- * outputs the total number of words found in the file and the frequencies of
- * unique words, sorted by the most frequently used word in descending order.
+ * This is the socket client for the TextAnalyzer program that implements an
+ * application that reads a file from a given URL and outputs statistics
+ * about the words found in that file. It outputs the total number of words
+ * found in the file and the frequencies of unique words, sorted by the most
+ * frequently used word in descending order.
  * <p>
  * Course: CEN 3024C-27021 Software Development I
  * Instructor: Dr. Lisa Macon
